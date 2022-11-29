@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
-import { StarIcon, ShoppingCartIcon, HeartIcon } from '@heroicons/react/solid'
-import { Link } from 'react-router-dom'
+import {StarIcon, ShoppingCartIcon, HeartIcon} from '@heroicons/react/solid'
+import {Link} from 'react-router-dom'
 
 const Card = ({
   item,
@@ -57,8 +57,8 @@ const Card = ({
             </p>
           </div>
           <div>
-            <div className="my-auto" title={`$${item.price}`}>
-              <span className={styles.priceSub}>$</span>
+            <div className="my-auto" title={`Rs ${item.price}`}>
+              <span className={styles.priceSub}>Rs </span>
               <span className={styles.priceTop}>{Math.trunc(item.price)}</span>
               {parseInt((item.price % 1).toFixed(2).substring(2)) !== 0 ? (
                 <span className={styles.priceSub}>

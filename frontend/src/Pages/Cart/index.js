@@ -1,6 +1,6 @@
 import React from 'react'
 import {ShoppingCartIcon, TrashIcon} from "@heroicons/react/outline";
-import {Link} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import {useCart} from "../../Context/CartContext";
 import styles from "./styles.module.css";
 
@@ -8,6 +8,8 @@ const Cart = () => {
   const {items, removeFromCart} = useCart();
 
   const subtotal = items.reduce((acc, obj) => acc + obj.price, 0).toFixed(1)
+
+  const navigator = useNavigate();
 
   return (
     <div>
@@ -59,7 +61,7 @@ const Cart = () => {
                           <p className="font-extralight">{item.title}</p>
                         </Link>
                         <p className="mt-auto mb-4 font-extralight text-xl">
-                          $ {item.price}
+                          Rs. {item.price}
                         </p>
                       </div>
                       <div className="flex flex-row ml-auto">
@@ -80,23 +82,44 @@ const Cart = () => {
                   Order Summary
                 </span>
                 <span className="text-sm my-2 font-extralight flex">
-                  Subtotal <span className="ml-auto font-normal">$ {subtotal}</span>
+                  Subtotal <span className="ml-auto font-normal">Rs {subtotal}</span>
                 </span>
                 <span className="text-sm my-2 font-extralight flex">
-                  Shipping Estimate <span className="ml-auto font-normal">$ 5</span>
+                  Shipping Estimate <span className="ml-auto font-normal">Rs 5</span>
                 </span>
                 <span className="text-sm my-2 font-extralight flex">
-                  Tax Estimate <span className="ml-auto font-normal">$ 5</span>
+                  Tax Estimate <span className="ml-auto font-normal">Rs 5</span>
                 </span>
                 <span className="text-md my-2 font-normal flex">
-                  Order Total <span className="ml-auto">$ {parseFloat(subtotal) + 10}</span>
+                  Order Total <span className="ml-auto">Rs {parseFloat(subtotal) + 10}</span>
                 </span>
+                <div className={styles.button}>
+                  <button
+                    className='flex-1'
+                    onClick={() => {
+                      console.log(items)
+                      navigator('/buy', {
+                        state: {
+                          item: items
+                        }
+                      });
+                    }}
+                  >
+                    <div className="flex flex-col self-center bg-[#ff9900]">
+                      <span className={styles.buttonText}>
+                        Buy Now
+                      </span>
+                    </div>
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

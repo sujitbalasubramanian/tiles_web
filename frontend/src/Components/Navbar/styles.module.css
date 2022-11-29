@@ -81,12 +81,12 @@
 
 .logoBox {
   @apply 
+  flex
+  items-center
+  flex-shrink-0	
   bg-gradient-to-b 
-  from-blue-600 
-  via-blue-700 
-  to-blue-600 
-  w-[5.6rem] 
-  h-10 
+  w-[10rem] 
+  h-20 
   rounded-md
 }
 
